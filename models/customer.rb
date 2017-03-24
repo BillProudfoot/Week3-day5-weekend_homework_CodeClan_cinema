@@ -43,6 +43,13 @@ def delete()
   SqlRunner.run(sql)
 end
 
+def self.get_many(sql)
+  customers = SqlRunner.run(sql)
+  result = customers.map { |customer| Customer.new(customer) }
+  return result
+end
+
+
 def self.delete_all()
   sql = "DELETE FROM customers"
   SqlRunner.run(sql)

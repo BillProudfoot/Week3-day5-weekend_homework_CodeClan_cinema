@@ -35,7 +35,12 @@ class Film
     sql =" UPDATE films
     SET (title, price) = ('#{@title}', #{@price})
     WHERE id = #{@id};"
-    update = SqlRunner.run(sql)
+    SqlRunner.run(sql)
+  end
+
+  def delete()
+    sql = "DELETE FROM films where id =#{@id}"
+    SqlRunner.run(sql)
   end
 
   def self.delete_all()

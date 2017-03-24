@@ -16,8 +16,8 @@ price INT8
 
 CREATE TABLE customers (
 id SERIAL8 PRIMARY KEY,
-film_id INT8,
-customer_id INT8
+film_id INT8 REFERENCES films(id) ON DELETE CASCADE,
+customer_id INT8 REFERENCES customer(id) ON DELETE CASCADE, 
 );
 
 

@@ -19,6 +19,22 @@ class Film
     @id = film['id'].to_i
   end
 
+  def customer()
+    sql = "SELECT customers. * WHERE id = #{@customer_id}"
+    customer = SqlRunner.run(sql).first()
+    return Customer.new(customer)
+  end
 
+  def ticket()
+    sql = "SELECT tickets. * WHERE id = #{@id}"
+    ticket = SqlRunner.run(sql).first()
+    return Ticket.new(ticket)
+  end
+
+
+  def self.delete_all()
+    sql = "DELETE FROM films"
+    SqlRunner.run(sql)
+  end
 
 end

@@ -19,6 +19,23 @@ def save()
   @id = customer['id'].to_i
 end
 
+def film()
+  sql = "SELECT films. * WHERE id = #{@film_id}"
+  film = SqlRunner.run(sql).first()
+  return Film.new(film)
+end
 
+def ticket()
+  sql = "SELECT tickets. * WHERE id = #{@id}"
+  ticket = SqlRunner.run(sql).first()
+  return Ticket.new(ticket)
+end
 
+def update()
+
+end
+def self.delete_all()
+  sql = "DELETE FROM customers"
+  SqlRunner.run(sql)
+end
 end

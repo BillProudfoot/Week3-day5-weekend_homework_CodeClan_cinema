@@ -22,6 +22,17 @@ class Ticket
     @id = ticket['id'].to_i
   end
 
+  def customer()
+    sql = "SELECT customers. * WHERE id = #{@customer_id}"
+    customer = SqlRunner.run(sql).first()
+    return Customer.new(customer)
+  end
+
+  def film()
+    sql = "SELECT films. * WHERE id = #{@film_id}"
+    film = SqlRunner.run(sql).first()
+    return Film.new(film)
+  end
 
 
 

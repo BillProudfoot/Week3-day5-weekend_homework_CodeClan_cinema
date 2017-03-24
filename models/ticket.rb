@@ -25,7 +25,7 @@ class Ticket
   def self.all()
     sql = "SELECT * FROM tickets"
     return self.get_many(sql)
-    End
+  end
 
   def customer()
     sql = "SELECT customers. * WHERE id = #{@customer_id}"

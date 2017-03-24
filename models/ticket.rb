@@ -1,3 +1,5 @@
+require_relative("../db/sql_runner")
+
 class Ticket
 
   def initialize(options)
@@ -6,5 +8,9 @@ class Ticket
     @customer_id = options['customer_id'].to_i
   end
 
+  def self.delete_all()
+    sql = "DELETE FROM tickets"
+    SqlRunner.run(sql)
+  end
 
 end

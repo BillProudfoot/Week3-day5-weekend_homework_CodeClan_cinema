@@ -34,11 +34,6 @@ class Ticket
     return Film.new(film)
   end
 
-  end
-
-
-
-
   def self.delete_all()
     sql = "DELETE FROM tickets"
     SqlRunner.run(sql)

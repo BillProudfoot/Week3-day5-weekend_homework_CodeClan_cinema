@@ -22,6 +22,11 @@ class Ticket
     @id = ticket['id'].to_i
   end
 
+  def self.all()
+    sql = "SELECT * FROM tickets"
+    return self.get_many(sql)
+    End
+
   def customer()
     sql = "SELECT customers. * WHERE id = #{@customer_id}"
     customer = SqlRunner.run(sql).first()
@@ -33,6 +38,13 @@ class Ticket
     film = SqlRunner.run(sql).first()
     return Film.new(film)
   end
+
+  def self.get_many(sql)
+    tickets = SqlRunner.run(sql)
+    result = tickets.map { |ticket| Ticket.new(ticket) }
+    return result
+  end
+
 
   def self.delete_all()
     sql = "DELETE FROM tickets"

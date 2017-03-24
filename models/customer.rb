@@ -13,8 +13,8 @@ end
 
 def save()
   sql = "INSERT INTO customers (name, fund) 
-  VALUES ('#{ @name }', '#{ @fund}' ) 
-  RETURNING id"
+        VALUES ('#{ @name }', '#{ @fund}' ) 
+        RETURNING id"
   customer = SqlRunner.run( sql).first
   @id = customer['id'].to_i
 end
@@ -24,6 +24,19 @@ def film()
   film = SqlRunner.run(sql).first()
   return Film.new(film)
 end
+
+def films()
+  sql = "SELECT films.* from films
+        INNER JOIN tickets ON tickets.film_id = films.id
+        WHERE customer_id =#{@id}"
+  return Film.get_many(sql)
+  end       
+
+def self.all()
+  sql = "SELECT * FROM customers"
+  return self.get_many(sql)
+end
+
 
 def ticket()
   sql = "SELECT tickets. * WHERE id = #{@id}"

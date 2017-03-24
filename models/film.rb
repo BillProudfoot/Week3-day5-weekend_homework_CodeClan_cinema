@@ -19,11 +19,24 @@ class Film
     @id = film['id'].to_i
   end
 
+  def self.all()
+    sql = "SELECT * FROM films"
+    return self.get_many(sql)
+  end
+
   def customer()
-    sql = "SELECT customers. * WHERE id = #{@customer_id}"
+    sql = "SELECT customers.* WHERE id = #{@customer_id}"
     customer = SqlRunner.run(sql).first()
     return Customer.new(customer)
   end
+
+  def customers()
+    sql = " SELECT customers.* FROM customers
+          INNER JOIN tickets ON tickets.customer_id = customers.id
+          WHERE film_id = #{@id};"
+    return Customer.get_many(sql)
+  end
+
 
   def ticket()
     sql = "SELECT tickets. * WHERE id = #{@id}"

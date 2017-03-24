@@ -32,8 +32,13 @@ def ticket()
 end
 
 def update()
-
+  sql =" UPDATE customers
+  SET (name, fund) = ('#{@name}', #{@fund})
+  WHERE id = #{@id};"
+  update = SqlRunner.run(sql)
 end
+
+
 def self.delete_all()
   sql = "DELETE FROM customers"
   SqlRunner.run(sql)

@@ -31,6 +31,12 @@ class Film
     return Ticket.new(ticket)
   end
 
+  def update()
+    sql =" UPDATE films
+    SET (title, price) = ('#{@title}', #{@price})
+    WHERE id = #{@id};"
+    update = SqlRunner.run(sql)
+  end
 
   def self.delete_all()
     sql = "DELETE FROM films"

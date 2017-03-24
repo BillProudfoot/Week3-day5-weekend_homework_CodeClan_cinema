@@ -1,16 +1,20 @@
-require ('pry')
+require_relative( 'models/customer')
+require_relative( 'models/film')
+require_relative( 'models/ticket')
+
+require ('pry-byebug')
 
 Ticket.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
-customer1 = Customer.new({'name' => 'Bill', 'funds' => 50 })
+customer1 = Customer.new({'name' => 'Bill', 'fund' => 50 })
 customer1.save()
-customer2 = Customer.new({'name' => 'John', 'funds' => 35 })
+customer2 = Customer.new({'name' => 'John', 'fund' => 35 })
 customer2.save()
-customer3 = Customer.new({'name' => 'George', 'funds' => 75 })
+customer3 = Customer.new({'name' => 'George', 'fund' => 75 })
 customer3.save()
-customer4 = Customer.new({'name' => 'Neil', 'funds' => 90 })
+customer4 = Customer.new({'name' => 'Neil', 'fund' => 90 })
 customer4.save()
 
 film1 = Film.new({'title' => 'Jaws', 'price' => 7 })
